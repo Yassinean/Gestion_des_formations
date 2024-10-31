@@ -1,37 +1,52 @@
 package com.yassine.Gestion_Formation.service.Impl;
 
-import com.yassine.Gestion_Formation.model.Apprenant;
-import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.yassine.Gestion_Formation.model.Apprenant;
+import com.yassine.Gestion_Formation.repository.ApprenantRepository;
+import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
 
+import lombok.AllArgsConstructor;
 
 @Service
-public class ApprenantServiceImpl implements IGeneralService<Apprenant,Long> {
+@AllArgsConstructor
+public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
+
+    private final ApprenantRepository apprenantRepository;
 
     @Override
     public Apprenant create(Apprenant entity) {
-        return null;
+        return apprenantRepository.save(entity);
     }
 
     @Override
-    public Apprenant update(Apprenant entity) {
-        return null;
+    public Apprenant update(Long id, Apprenant entity) {
+        return apprenantRepository.findById(id)
+                .map(existingApprenant -> {
+                    existingApprenant.setNiveau(entity.getNiveau());
+                    existingApprenant.setClasse(entity.getClasse());
+                    existingApprenant.setFormation(entity.getFormation());
+                    return apprenantRepository.save(existingApprenant);
+                })
+                .orElseThrow(() -> new RuntimeException("Apprenant not found with Id : " + id));
     }
 
     @Override
-    public String delete(Apprenant entity) {
-        return "";
+    public String delete(Long id) {
+        apprenantRepository.deleteById(id);
+        return "apprenant supprimé avec succes !";
     }
 
     @Override
-    public Apprenant findById(Long id) {
-        return null;
+    public Optional<Apprenant> findById(Long id) {
+        return apprenantRepository.findById(id);
     }
 
     @Override
     public List<Apprenant> findAll() {
-        return List.of();
+        return apprenantRepository.findAll();
     }
 }
