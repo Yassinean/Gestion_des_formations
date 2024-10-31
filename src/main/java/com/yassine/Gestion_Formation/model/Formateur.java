@@ -15,7 +15,7 @@ public class Formateur extends User {
     @NotBlank(message = "La spécialité est obligatoire")
     private String specialite;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "classe_id")
     private Classe classe;
 

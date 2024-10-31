@@ -50,12 +50,7 @@ public class Formation {
     @JoinColumn(name = "formateur_id")
     private Formateur formateur;
 
-    @ManyToMany
-    @JoinTable(
-            name = "formation_apprenants",
-            joinColumns = @JoinColumn(name = "formation_id"),
-            inverseJoinColumns = @JoinColumn(name = "apprenant_id")
-    )
+    @OneToMany(mappedBy = "formations")
     private List<Apprenant> apprenants;
 
 }

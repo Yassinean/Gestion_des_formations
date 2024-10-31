@@ -19,7 +19,8 @@ public class Apprenant extends User {
     @JoinColumn(name = "classe_id")
     private Classe classe;
 
-    @ManyToMany(mappedBy = "apprenants")
-    private List<Formation> formations;
+    @ManyToOne
+    @JoinColumn(name = "formation_id")
+    private Formation formations;
 }
 
