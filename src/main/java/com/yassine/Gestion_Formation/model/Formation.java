@@ -46,10 +46,10 @@ public class Formation {
     @NotNull(message = "Le statut de la formation est obligatoire")
     private StatutFormation statut;
 
-    @OneToMany(mappedBy = "formations")
-    private List<Formateur> formateur;
+    @OneToMany(mappedBy = "formation")
+    private List<Formateur> formateurs;
 
-    @OneToMany(mappedBy = "formations")
+    @OneToMany(mappedBy = "formation")
     private List<Apprenant> apprenants;
 
 }

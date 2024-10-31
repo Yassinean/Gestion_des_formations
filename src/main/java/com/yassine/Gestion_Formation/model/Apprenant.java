@@ -21,6 +21,6 @@ public class Apprenant extends User {
 
     @ManyToOne
     @JoinColumn(name = "formation_id")
-    private Formation formations;
+    private Formation formation;
 }
 
