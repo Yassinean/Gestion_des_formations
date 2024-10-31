@@ -19,6 +19,7 @@ public class Formateur extends User {
     @JoinColumn(name = "classe_id")
     private Classe classe;
 
-    @OneToMany(mappedBy = "formateur")
-    private List<Formation> formations;
+    @ManyToOne
+    @JoinColumn(name = "formation_id")
+    private Formation formation;
 }

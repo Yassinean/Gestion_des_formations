@@ -46,9 +46,8 @@ public class Formation {
     @NotNull(message = "Le statut de la formation est obligatoire")
     private StatutFormation statut;
 
-    @ManyToOne
-    @JoinColumn(name = "formateur_id")
-    private Formateur formateur;
+    @OneToMany(mappedBy = "formations")
+    private List<Formateur> formateur;
 
     @OneToMany(mappedBy = "formations")
     private List<Apprenant> apprenants;
