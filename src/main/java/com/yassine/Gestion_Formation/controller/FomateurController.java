@@ -2,6 +2,7 @@ package com.yassine.Gestion_Formation.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,26 +22,32 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/formateurs")
 public class FomateurController {
-    private final IGeneralService<Formateur,Long> formationService;
+    private final IGeneralService<Formateur,Long> formateurService;
 
     @PostMapping("/add")
     public Formateur createFormateur(@RequestBody Formateur formateur){
-        return formationService.create(formateur);
+        return formateurService.create(formateur);
+    }
+
+      
+    @GetMapping("/{id}")
+    public Optional<Formateur> findById(@PathVariable Long id){
+        return formateurService.findById(id);
     }
 
     @GetMapping("/list")
     public List<Formateur> listFormateur(){
-        return formationService.findAll();
+        return formateurService.findAll();
     }
 
     @PutMapping("/update/{id}")
     public Formateur updateFormateur(@PathVariable Long id,@RequestBody Formateur formateur){
-        return formationService.update(id,formateur);
+        return formateurService.update(id,formateur);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteFormateur(@PathVariable Long id){
-        return formationService.delete(id);
+        return formateurService.delete(id);
     }
 
 }

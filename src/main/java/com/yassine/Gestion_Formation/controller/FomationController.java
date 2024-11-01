@@ -2,6 +2,7 @@ package com.yassine.Gestion_Formation.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,11 @@ public class FomationController {
     @PostMapping("/add")
     public Formation createFormation(@RequestBody Formation fomation){
         return formationService.create(fomation);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Formation> findById(@PathVariable Long id){
+        return formationService.findById(id);
     }
 
     @GetMapping("/list")

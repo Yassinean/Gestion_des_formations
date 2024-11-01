@@ -3,7 +3,6 @@ package com.yassine.Gestion_Formation.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @DiscriminatorValue("APPRENANT")

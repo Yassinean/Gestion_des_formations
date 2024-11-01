@@ -26,6 +26,9 @@ public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
     public Apprenant update(Long id, Apprenant entity) {
         return apprenantRepository.findById(id)
                 .map(existingApprenant -> {
+                    existingApprenant.setNom(entity.getNom());
+                    existingApprenant.setPrenom(entity.getPrenom());
+                    existingApprenant.setEmail(entity.getEmail());
                     existingApprenant.setNiveau(entity.getNiveau());
                     existingApprenant.setClasse(entity.getClasse());
                     existingApprenant.setFormation(entity.getFormation());
