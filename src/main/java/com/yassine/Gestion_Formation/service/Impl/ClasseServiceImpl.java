@@ -58,4 +58,11 @@ public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
     public List<Classe> findAll() {
         return classeRepository.findAll();
     }
+
+    @Override
+    public String searchByNom(String nom) {
+        return classeRepository.searchByNom(nom);
+    }
+
+    
 }

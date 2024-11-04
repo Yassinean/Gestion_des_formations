@@ -59,4 +59,9 @@ public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
     public List<Formateur> findAll() {
         return formateurRepository.findAll();
     }
+
+    @Override
+    public String searchByNom(String nom) {
+        return formateurRepository.searchByNom(nom);
+    }
 }

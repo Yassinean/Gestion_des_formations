@@ -62,5 +62,10 @@ private final FormationRepository formationRepository;
     public List<Formation> findAll() {
         return formationRepository.findAll();
     }
+
+    @Override
+    public String searchByNom(String nom) {
+       return formationRepository.searchByNom(nom);
+    }
     
 }

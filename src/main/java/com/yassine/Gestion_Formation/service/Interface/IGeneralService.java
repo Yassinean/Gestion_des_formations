@@ -9,6 +9,7 @@ public interface IGeneralService <T,ID> {
     String delete(Long id);
     Optional<T> findById(ID id);
     List<T> findAll();
+    String searchByNom(String nom);
 }
 
 

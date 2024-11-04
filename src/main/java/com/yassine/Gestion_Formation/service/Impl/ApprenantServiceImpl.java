@@ -59,4 +59,9 @@ public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
     public List<Apprenant> findAll() {
         return apprenantRepository.findApprenantWithClasseAndFormation();
     }
+
+    @Override
+    public String searchByNom(String nom) {
+      return apprenantRepository.searchByNom(nom);
+    }
 }
