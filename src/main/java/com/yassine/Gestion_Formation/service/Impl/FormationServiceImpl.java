@@ -26,22 +26,21 @@ private final FormationRepository formationRepository;
 
     @Override
     public Formation update(Long id, Formation entity) {
-        // return formationRepository.findById(id)
-        //         .map(existingFormation -> {
-        //             existingFormation.setTitre(entity.getTitre());
-        //             existingFormation.setNiveau(entity.getNiveau());
-        //             existingFormation.setPrerequis(entity.getPrerequis());
-        //             existingFormation.setCapaciteMin(entity.getCapaciteMin());
-        //             existingFormation.setCapaciteMax(entity.getCapaciteMax());
-        //             existingFormation.setDateDebut(entity.getDateDateDebut());
-        //             existingFormation.setDateFin(entity.getDateDateFin());
-        //             existingFormation.setStatut(entity.getStatut());
-        //             existingFormation.setFormateurs(entity.getFormateurs());
-        //             existingFormation.setApprenants(entity.getApprenants());
-        //             return formationRepository.save(existingFormation);
-        //         })
-        //         .orElseThrow(() -> new RuntimeException("Formation not found with Id : " + id));
-        return null;
+        return formationRepository.findById(id)
+                .map(existingFormation -> {
+                    existingFormation.setTitre(entity.getTitre());
+                    existingFormation.setNiveau(entity.getNiveau());
+                    existingFormation.setPrerequis(entity.getPrerequis());
+                    existingFormation.setCapaciteMin(entity.getCapaciteMin());
+                    existingFormation.setCapaciteMax(entity.getCapaciteMax());
+                    existingFormation.setDateDebut(entity.getDateDebut());
+                    existingFormation.setDateFin(entity.getDateFin());
+                    existingFormation.setStatus(entity.getStatus());
+                    existingFormation.setFormateurs(entity.getFormateurs());
+                    existingFormation.setApprenants(entity.getApprenants());
+                    return formationRepository.save(existingFormation);
+                })
+                .orElseThrow(() -> new RuntimeException("Formation not found with Id : " + id));
     }
 
     @Override

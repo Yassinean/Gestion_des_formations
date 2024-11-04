@@ -2,7 +2,7 @@ package com.yassine.Gestion_Formation.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
-
+ 
 import org.springframework.stereotype.Service;
 
 import com.yassine.Gestion_Formation.model.Apprenant;
@@ -50,6 +50,6 @@ public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
 
     @Override
     public List<Apprenant> findAll() {
-        return apprenantRepository.findAll();
+        return apprenantRepository.findApprenantWithClasseAndFormation();
     }
 }

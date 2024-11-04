@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/apprenants")
 public class ApprenantController {
     private final IGeneralService<Apprenant,Long> apprenantService;
-
+ 
     @PostMapping("/add")
     public Apprenant createApprenant(@RequestBody Apprenant apprenant){
         return apprenantService.create(apprenant);

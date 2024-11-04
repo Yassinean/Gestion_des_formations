@@ -44,7 +44,7 @@ public class Formation {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Le statut de la formation est obligatoire")
-    private StatutFormation statut;
+    private StatutFormation status;
 
     @OneToMany(mappedBy = "formation")
     private List<Formateur> formateurs;
