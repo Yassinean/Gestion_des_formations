@@ -5,6 +5,7 @@ import java.util.Optional;
  
 import org.springframework.stereotype.Service;
 
+import com.yassine.Gestion_Formation.exceptions.ApprenantNotFoundException;
 import com.yassine.Gestion_Formation.model.Apprenant;
 import com.yassine.Gestion_Formation.repository.ApprenantRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
@@ -34,17 +35,23 @@ public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
                     existingApprenant.setFormation(entity.getFormation());
                     return apprenantRepository.save(existingApprenant);
                 })
-                .orElseThrow(() -> new RuntimeException("Apprenant not found with Id : " + id));
+                .orElseThrow(() -> new ApprenantNotFoundException(id));
     }
 
     @Override
     public String delete(Long id) {
+        if(!apprenantRepository.existsById(id)){
+            throw new ApprenantNotFoundException(id);
+        }
         apprenantRepository.deleteById(id);
         return "apprenant supprimé avec succes !";
     }
 
     @Override
     public Optional<Apprenant> findById(Long id) {
+        if(!apprenantRepository.existsById(id)){
+            throw new ApprenantNotFoundException(id);
+        }
         return apprenantRepository.findById(id);
     }
 
