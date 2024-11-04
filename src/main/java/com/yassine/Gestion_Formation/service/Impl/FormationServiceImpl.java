@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.yassine.Gestion_Formation.exceptions.FormationNotFoundException;
 import com.yassine.Gestion_Formation.model.Formation;
 import com.yassine.Gestion_Formation.repository.FormationRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
@@ -40,11 +41,14 @@ private final FormationRepository formationRepository;
                     existingFormation.setApprenants(entity.getApprenants());
                     return formationRepository.save(existingFormation);
                 })
-                .orElseThrow(() -> new RuntimeException("Formation not found with Id : " + id));
+                .orElseThrow(() -> new FormationNotFoundException(id));
     }
 
     @Override
     public String delete(Long id) {
+        if (formationRepository.existsById(id)) {
+            throw new FormationNotFoundException(id);
+        }
         formationRepository.deleteById(id);
         return "Formation supprimé avec succes !";
     }

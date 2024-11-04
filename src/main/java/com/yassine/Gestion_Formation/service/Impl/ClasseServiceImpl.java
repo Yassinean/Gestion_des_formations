@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.yassine.Gestion_Formation.exceptions.ClasseNotFoundException;
 import com.yassine.Gestion_Formation.model.Classe;
 import com.yassine.Gestion_Formation.repository.ClasseRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
@@ -33,17 +34,23 @@ public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
                     existingClasse.setFormateur(entity.getFormateur());
                     return classeRepository.save(existingClasse);
                 })
-                .orElseThrow(() -> new RuntimeException("Classe not found with Id : " + id));
+                .orElseThrow(() -> new ClasseNotFoundException(id));
     }
 
     @Override
     public String delete(Long id) {
+        if(!classeRepository.existsById(id)){
+         throw new ClasseNotFoundException(id);   
+        }
         classeRepository.deleteById(id);
         return "Classe supprimé avec succes !";
     }
 
     @Override
     public Optional<Classe> findById(Long id) {
+        if (!classeRepository.existsById(id)) {
+            throw new ClasseNotFoundException(id);
+        }
         return classeRepository.findById(id);
     }
 

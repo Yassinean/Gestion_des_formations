@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.yassine.Gestion_Formation.exceptions.FormateurNotFoundException;
 import com.yassine.Gestion_Formation.model.Formateur;
 import com.yassine.Gestion_Formation.repository.FormateurRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
@@ -34,17 +35,23 @@ public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
                     existingFormateur.setFormation(entity.getFormation());
                     return formateurRepository.save(existingFormateur);
                 })
-                .orElseThrow(() -> new RuntimeException("Formateur not found with Id : " + id));
+                .orElseThrow(() -> new FormateurNotFoundException(id));
     }
 
     @Override
     public String delete(Long id) {
+        if (!formateurRepository.existsById(id)) {
+            throw new FormateurNotFoundException(id);
+        }
         formateurRepository.deleteById(id);
         return "Formateur supprimé avec succes !";
     }
 
     @Override
     public Optional<Formateur> findById(Long id) {
+        if (!formateurRepository.existsById(id)) {
+            throw new FormateurNotFoundException(id);
+        }
         return formateurRepository.findById(id);
     }
 
