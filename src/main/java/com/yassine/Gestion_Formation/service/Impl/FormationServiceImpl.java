@@ -2,24 +2,19 @@ package com.yassine.Gestion_Formation.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.yassine.Gestion_Formation.exceptions.FormationNotFoundException;
 import com.yassine.Gestion_Formation.model.Formation;
 import com.yassine.Gestion_Formation.repository.FormationRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
-
 import lombok.AllArgsConstructor;
-
 
 @Service
 @AllArgsConstructor
-
 public class FormationServiceImpl implements IGeneralService<Formation, Long> {
 
-private final FormationRepository formationRepository;
-    
+    private final FormationRepository formationRepository;
+
     @Override
     public Formation create(Formation entity) {
         return formationRepository.save(entity);
@@ -46,15 +41,18 @@ private final FormationRepository formationRepository;
 
     @Override
     public String delete(Long id) {
-        if (formationRepository.existsById(id)) {
+        if (!formationRepository.existsById(id)) {
             throw new FormationNotFoundException(id);
         }
         formationRepository.deleteById(id);
-        return "Formation supprimé avec succes !";
+        return "Formation supprimée avec succès !";
     }
 
     @Override
     public Optional<Formation> findById(Long id) {
+        if (!formationRepository.existsById(id)) {
+            throw new FormationNotFoundException(id);
+        }
         return formationRepository.findById(id);
     }
 
@@ -64,8 +62,7 @@ private final FormationRepository formationRepository;
     }
 
     @Override
-    public String searchByNom(String titre) {
-       return formationRepository.searchByTitre(titre);
+    public Optional<Formation> findByNom(String titre) {
+        return formationRepository.findByTitre(titre);
     }
-    
 }

@@ -2,22 +2,19 @@ package com.yassine.Gestion_Formation.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.yassine.Gestion_Formation.exceptions.FormateurNotFoundException;
 import com.yassine.Gestion_Formation.model.Formateur;
 import com.yassine.Gestion_Formation.repository.FormateurRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
-
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-
 public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
+
     private final FormateurRepository formateurRepository;
-    
+
     @Override
     public Formateur create(Formateur entity) {
         return formateurRepository.save(entity);
@@ -44,7 +41,7 @@ public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
             throw new FormateurNotFoundException(id);
         }
         formateurRepository.deleteById(id);
-        return "Formateur supprimé avec succes !";
+        return "Formateur supprimé avec succès !";
     }
 
     @Override
@@ -61,7 +58,7 @@ public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
     }
 
     @Override
-    public String searchByNom(String nom) {
-        return formateurRepository.searchByNom(nom);
+    public Optional<Formateur> findByNom(String nom) {
+        return formateurRepository.findByNom(nom);
     }
 }

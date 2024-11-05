@@ -2,23 +2,19 @@ package com.yassine.Gestion_Formation.service.Impl;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.yassine.Gestion_Formation.exceptions.ClasseNotFoundException;
 import com.yassine.Gestion_Formation.model.Classe;
 import com.yassine.Gestion_Formation.repository.ClasseRepository;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
-
 import lombok.AllArgsConstructor;
-
 
 @Service
 @AllArgsConstructor
 public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
-     
+
     private final ClasseRepository classeRepository;
-    
+
     @Override
     public Classe create(Classe entity) {
         return classeRepository.save(entity);
@@ -39,11 +35,11 @@ public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
 
     @Override
     public String delete(Long id) {
-        if(!classeRepository.existsById(id)){
-         throw new ClasseNotFoundException(id);   
+        if (!classeRepository.existsById(id)) {
+            throw new ClasseNotFoundException(id);
         }
         classeRepository.deleteById(id);
-        return "Classe supprimé avec succes !";
+        return "Classe supprimée avec succès !";
     }
 
     @Override
@@ -60,9 +56,7 @@ public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
     }
 
     @Override
-    public String searchByNom(String nom) {
-        return classeRepository.searchByNom(nom);
+    public Optional<Classe> findByNom(String nom) {
+        return classeRepository.findByNom(nom);
     }
-
-    
 }
