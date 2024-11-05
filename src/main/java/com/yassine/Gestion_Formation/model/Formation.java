@@ -1,6 +1,7 @@
 package com.yassine.Gestion_Formation.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.yassine.Gestion_Formation.model.Enum.StatutFormation;
@@ -46,10 +47,10 @@ public class Formation {
     @NotNull(message = "Le statut de la formation est obligatoire")
     private StatutFormation status;
 
-    @OneToMany(mappedBy = "formation")
-    private List<Formateur> formateurs;
+  @OneToMany(mappedBy = "formation", cascade = CascadeType.ALL)
+    private List<Apprenant> apprenants = new ArrayList<>();
 
-    @OneToMany(mappedBy = "formation")
-    private List<Apprenant> apprenants;
+    @OneToMany(mappedBy = "formation", cascade = CascadeType.ALL)
+    private List<Formateur> formateurs = new ArrayList<>();
 
 }

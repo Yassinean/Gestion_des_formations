@@ -30,14 +30,6 @@ public class Apprenant extends User {
         return classe != null ? classe.getNom() : null;
     }
 
-    public String getClasseNumSalle() {
-        return classe != null ? classe.getNumSalle() : null;
-    }
-
-    public Long getFormationId() {
-        return formation != null ? formation.getId() : null;
-    }
-
     public String getFormationNom() {
         return formation != null ? formation.getTitre() : null;
     }
