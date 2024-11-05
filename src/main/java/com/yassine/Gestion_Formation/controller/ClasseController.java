@@ -1,6 +1,6 @@
 package com.yassine.Gestion_Formation.controller;
 
-import java.util.List;
+import org.springframework.data.domain.*;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +26,8 @@ public class ClasseController {
     }
 
     @GetMapping("/list")
-    public List<Classe> listClasse() {
-        return classeService.findAll();
+    public Page<Classe> listClasse(Pageable pageable) {
+        return classeService.findAll(pageable);
     }
 
     @PutMapping("/update/{id}")

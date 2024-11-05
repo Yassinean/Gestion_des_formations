@@ -1,8 +1,9 @@
 package com.yassine.Gestion_Formation.controller;
 
-import java.util.List;
+
 import java.util.Optional;
 
+import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 import com.yassine.Gestion_Formation.model.Formateur;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
@@ -26,8 +27,8 @@ public class FormateurController {
     }
 
     @GetMapping("/list")
-    public List<Formateur> listFormateur() {
-        return formateurService.findAll();
+    public Page<Formateur> listFormateur(Pageable pageable) {
+        return formateurService.findAll(pageable);
     }
 
     @PutMapping("/update/{id}")

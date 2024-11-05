@@ -1,9 +1,11 @@
 package com.yassine.Gestion_Formation.controller;
 
-import java.util.List;
+
 import java.util.Optional;
 
+import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
+
 import com.yassine.Gestion_Formation.model.Apprenant;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
 
@@ -26,8 +28,8 @@ public class ApprenantController {
     }
 
     @GetMapping("/list")
-    public List<Apprenant> listApprenant() {
-        return apprenantService.findAll();
+    public Page<Apprenant> listApprenant(Pageable pageable) {
+        return apprenantService.findAll(pageable);
     }
 
     @PutMapping("/update/{id}")

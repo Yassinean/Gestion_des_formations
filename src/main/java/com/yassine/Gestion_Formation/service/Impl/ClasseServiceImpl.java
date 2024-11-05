@@ -1,7 +1,8 @@
 package com.yassine.Gestion_Formation.service.Impl;
 
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import com.yassine.Gestion_Formation.exceptions.ClasseNotFoundException;
 import com.yassine.Gestion_Formation.model.Classe;
@@ -51,12 +52,13 @@ public class ClasseServiceImpl implements IGeneralService<Classe, Long> {
     }
 
     @Override
-    public List<Classe> findAll() {
-        return classeRepository.findAll();
+    public Page<Classe> findAll(Pageable pageable) {
+        return classeRepository.findAll(pageable);
     }
 
     @Override
     public Optional<Classe> findByNom(String nom) {
         return classeRepository.findByNom(nom);
     }
+
 }

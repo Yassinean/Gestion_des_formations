@@ -1,7 +1,8 @@
 package com.yassine.Gestion_Formation.service.Impl;
 
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import com.yassine.Gestion_Formation.exceptions.FormationNotFoundException;
 import com.yassine.Gestion_Formation.model.Formation;
@@ -57,8 +58,8 @@ public class FormationServiceImpl implements IGeneralService<Formation, Long> {
     }
 
     @Override
-    public List<Formation> findAll() {
-        return formationRepository.findAll();
+    public Page<Formation> findAll(Pageable pageable) {
+        return formationRepository.findAll(pageable);
     }
 
     @Override

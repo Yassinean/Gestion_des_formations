@@ -1,7 +1,7 @@
 package com.yassine.Gestion_Formation.service.Impl;
 
-import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import com.yassine.Gestion_Formation.exceptions.FormateurNotFoundException;
 import com.yassine.Gestion_Formation.model.Formateur;
@@ -53,8 +53,8 @@ public class FormateurServiceImpl implements IGeneralService<Formateur, Long> {
     }
 
     @Override
-    public List<Formateur> findAll() {
-        return formateurRepository.findAll();
+    public Page<Formateur> findAll(Pageable pageable) {
+        return formateurRepository.findAll(pageable);
     }
 
     @Override
