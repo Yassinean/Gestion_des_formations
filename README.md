@@ -66,7 +66,7 @@ Le projet suit une architecture en couches pour une séparation claire des respo
 ```
 
 ### Diagramme de classe
-![ClassDiagram1.png](..%2F..%2FDocuments%2FGestion%20de%20formation%2FClassDiagram1.png)
+![ClassDiagram1](https://github.com/user-attachments/assets/9c09b9dc-2924-42ed-a45a-627e789d4305)
 ### Installation
 
 Clonez le repository :
