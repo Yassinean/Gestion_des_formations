@@ -24,9 +24,15 @@ public class ClasseController {
     public Optional<Classe> findById(@PathVariable Long id) {
         return classeService.findById(id);
     }
+    
+    @GetMapping("/search")
+    public Optional<Classe> findByNom(@RequestParam String nom) {
+        return classeService.findByNom(nom);
+    }
 
     @GetMapping("/list")
-    public Page<Classe> listClasse(Pageable pageable) {
+    public Page<Classe> listClasse(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return classeService.findAll(pageable);
     }
 

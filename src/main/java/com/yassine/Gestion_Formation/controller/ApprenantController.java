@@ -27,8 +27,14 @@ public class ApprenantController {
         return apprenantService.findById(id);
     }
 
+    @GetMapping("/search")
+    public Optional<Apprenant> findByNom(@RequestParam String nom) {
+        return apprenantService.findByNom(nom);
+    }
+
     @GetMapping("/list")
-    public Page<Apprenant> listApprenant(Pageable pageable) {
+    public Page<Apprenant> listApprenant(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return apprenantService.findAll(pageable);
     }
 

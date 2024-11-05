@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
+
 import com.yassine.Gestion_Formation.model.Formation;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
 
@@ -25,8 +26,14 @@ public class FormationController {
         return formationService.findById(id);
     }
 
+    @GetMapping("/search")
+    public Optional<Formation> findByNom(@RequestParam String nom) {
+        return formationService.findByNom(nom);
+    }
+
     @GetMapping("/list")
-    public Page<Formation> listFormation(Pageable pageable) {
+    public Page<Formation> listFormation(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return formationService.findAll(pageable);
     }
 

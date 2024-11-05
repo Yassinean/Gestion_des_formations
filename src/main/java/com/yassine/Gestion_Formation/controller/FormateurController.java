@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
+
 import com.yassine.Gestion_Formation.model.Formateur;
 import com.yassine.Gestion_Formation.service.Interface.IGeneralService;
 
@@ -26,8 +27,14 @@ public class FormateurController {
         return formateurService.findById(id);
     }
 
+    @GetMapping("/search")
+    public Optional<Formateur> findByNom(@RequestParam String nom) {
+        return formateurService.findByNom(nom);
+    }
+
     @GetMapping("/list")
-    public Page<Formateur> listFormateur(Pageable pageable) {
+    public Page<Formateur> listFormateur(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "5") int size) {
+        Pageable pageable = PageRequest.of(page, size);
         return formateurService.findAll(pageable);
     }
 
