@@ -64,8 +64,8 @@ private final FormationRepository formationRepository;
     }
 
     @Override
-    public String searchByNom(String nom) {
-       return formationRepository.searchByNom(nom);
+    public String searchByNom(String titre) {
+       return formationRepository.searchByTitre(titre);
     }
     
 }

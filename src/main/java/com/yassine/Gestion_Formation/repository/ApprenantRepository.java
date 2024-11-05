@@ -11,5 +11,5 @@ public interface ApprenantRepository extends JpaRepository<Apprenant,Long> {
     @Query("SELECT a FROM Apprenant a JOIN FETCH a.classe c JOIN FETCH a.formation f")
     List<Apprenant> findApprenantWithClasseAndFormation();
 
-    public String searchByNom(String nom);
+    List<Apprenant>findByNom(String nom);
 }

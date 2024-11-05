@@ -26,7 +26,7 @@ public class Apprenant extends User {
     @JoinColumn(name = "formation_id")
     private Formation formation;
 
-    public String getClasseNom() {
+     public String getClasseNom() {
         return classe != null ? classe.getNom() : null;
     }
 

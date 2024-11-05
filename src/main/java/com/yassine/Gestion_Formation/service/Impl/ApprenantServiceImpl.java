@@ -62,6 +62,6 @@ public class ApprenantServiceImpl implements IGeneralService<Apprenant, Long> {
 
     @Override
     public String searchByNom(String nom) {
-      return apprenantRepository.searchByNom(nom);
+      return apprenantRepository.findByNom(nom);
     }
 }
