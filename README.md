@@ -74,7 +74,7 @@ Le projet suit une architecture en couches pour une séparation claire des respo
 Clonez le repository :
 
 ```
-git clone https://github.com/username/Gestion_Formation.git
+git clone https://github.com/Yassinean/Gestion_des_formation.git
 ```
 
 ```
