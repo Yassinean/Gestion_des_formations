@@ -18,7 +18,7 @@ Ce projet est une API RESTful pour la gestion des formations, des apprenants, de
 
 ### Technologies Utilisées
 
-- Java 17
+- Java 8
 - Spring Boot 3.x (Spring MVC, Spring Data JPA, Spring Validation)
 - Hibernate pour l'ORM
 - Base de données PostgreSQL
@@ -66,7 +66,9 @@ Le projet suit une architecture en couches pour une séparation claire des respo
 ```
 
 ### Diagramme de classe
+
 ![ClassDiagram1](https://github.com/user-attachments/assets/9c09b9dc-2924-42ed-a45a-627e789d4305)
+
 ### Installation
 
 Clonez le repository :
@@ -89,13 +91,23 @@ Modifiez les informations de connexion dans application.properties :
 - spring.datasource.password=yourPassword
 
 Compilez et exécutez l'application :
-
+- Installer les dépendances :
 ```
 mvn clean install
 ```
-
+- Lancer l'application :
 ```
 mvn spring-boot:run
+```
+- Documentation de l'API : La documentation Swagger est disponible sur :
+```
+http://localhost:8080/swagger-ui/index.html#/
+```
+
+### TEST
+Pour exécuter les tests unitaires et d'intégration, utilisez la commande suivante :
+```
+  mvn test
 ```
 
 #### Testez les endpoints dans Postman ou tout autre client HTTP.
